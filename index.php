@@ -45,6 +45,7 @@
 
 
 <?php
+session_start();
 	$upload = 0;
 	// error_reporting(E_ERROR );
 error_reporting(0);
@@ -54,8 +55,8 @@ if(isset($_POST["submit"])) {
 	$tempname = $_FILES["uploadfile"]["tmp_name"];
 	$folder = "images/".$filename;
 	move_uploaded_file($tempname, $folder);
-	$exif = exif_read_data("C:/Users\UIDAI/Downloads/av/t2.JPG", 0, true);
-
+	$exif = exif_read_data($folder, 0, true);
+	// echo "$folder";
 	function DMStoDD($deg,$min,$sec){
 	    // Converting DMS ( Degrees / minutes / seconds ) to decimal format
 	    return (int)$deg+((((int)$min*60)+((int)$sec))/3600);
