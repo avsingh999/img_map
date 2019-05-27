@@ -53,7 +53,7 @@ error_reporting(0);
 if(isset($_POST["submit"])) {
 	$filename  = $_FILES["uploadfile"]["name"];
 	$tempname = $_FILES["uploadfile"]["tmp_name"];
-	$folder = "images/".$filename;
+	$folder = __DIR__."/upload-".$filename;
 	move_uploaded_file($tempname, $folder);
 	$exif = exif_read_data($folder, 0, true);
 	// echo "$folder";
