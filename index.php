@@ -10,18 +10,27 @@
 <body>
 
 
-	<div class="container">
-		<h1>IMG-FILE</h1>
-		<div class="row">
-			<form  class="form-field" enctype="multipart/form-data" action="" method='post'>
-				  <div class="custom-file">
-				    <input type="file" name="uploadfile" class="custom-file-input" id="validatedCustomFile" required>
-				    <label class="custom-file-label" id="choosefile" for="validatedCustomFile">
-				    		Choose file....
-					</label>
-				  </div>
-	  			<input type="submit" id = "button" class="btn-primary" value="submit" name="submit" />
-			</form>
+	<div class="container" style="margin-top: 130px;">
+			<div class="d-flex justify-content-center mx-auto" style="margin-bottom: 30px;">
+					<h1>IMG-SH-MAP</h1>
+				</div>
+
+		<div  class="d-flex justify-content-center mx-auto">
+			<div class="row">
+				<div class="container">
+					<form  class="form-field" enctype="multipart/form-data" action="" method='post'>
+						  <div class=" conatiner custom-file">
+						    <input type="file" name="uploadfile" class="custom-file-input" id="validatedCustomFile" required>
+						    <label class="custom-file-label" id="choosefile" for="validatedCustomFile">
+						    		Choose file....
+							</label>
+						  </div>
+						  <div class="conatiner" style="margin-top: 20px;">
+				  			<input type="submit" id = "button" class="btn btn-block btn-primary"value="submit" name="submit" />		  	
+						  </div>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
@@ -37,20 +46,17 @@
 
 <?php
 	$upload = 0;
+	// error_reporting(E_ERROR );
+error_reporting(0);
 
 if(isset($_POST["submit"])) {
 	$filename  = $_FILES["uploadfile"]["name"];
 	$tempname = $_FILES["uploadfile"]["tmp_name"];
 	$folder = "images/".$filename;
-	echo $folder;
 	move_uploaded_file($tempname, $folder);
-	echo "<br/>";
-	$exif = exif_read_data("C:/Users/UIDAI/Downloads/av/t2.JPG", 0, true);
+	$exif = exif_read_data("C:/Users\UIDAI/Downloads/av/t2.JPG", 0, true);
 
 	function DMStoDD($deg,$min,$sec){
-		// echo (((int)$min*60)+((int)$sec))/3600+$deg;
-		echo "$deg+$min+$sec";
-		echo "<br/>";
 	    // Converting DMS ( Degrees / minutes / seconds ) to decimal format
 	    return (int)$deg+((((int)$min*60)+((int)$sec))/3600);
 	}
@@ -71,9 +77,9 @@ if(isset($_POST["submit"])) {
 
 	$latitude = DMStoDD($lat_deg, $lat_min, $lat_sec);
 	$longitude = DMStoDD($long_deg, $long_min, $long_sec);
+
 	$_SESSION['lat'] = $latitude;
 	$_SESSION['long'] = $longitude;
-	echo "$latitude, $longitude";
 
 	$upload = 1;
 }
@@ -82,9 +88,18 @@ else{
 }
 
 ?>
-<?php  if ($upload==1){ ?>
-<a href="map.php">next</a>;
+<?php error_reporting(E_ERROR | E_PARSE);
+  if ($upload==1){ ?>
+  	<div class="text-center" style="margin: 10px;">
+  		<div class="conatiner">
+		  	<label><strong>Latitude: </strong><?php echo($latitude)?>,</label>
+		  	<label><strong>Longitude:</strong> <?php echo($longitude)?></label>
+		  </div>
+		  <div class="conatiner">
+		  	<a href="map.php" class="btn btn-info" role="button" >Go to Map &raquo;</a>
+		  </div>
 
+	</div>
 <?php }?>
 </body>
 </html>
