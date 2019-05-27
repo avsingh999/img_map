@@ -7,7 +7,9 @@ run index.php file with xampp
 ```
 - <strong>front page</strong>
 <img src="https://github.com/avsingh999/img_map/blob/master/img1.png" style="width:300px;height:200px;" />
+<br/>
 - <strong>select image</strong>
 <img src="https://github.com/avsingh999/img_map/blob/master/img2.png" style="width:300px;height:200px;" />
+<br/>
 - <strong>show image lcoation on map</strong>
 <img src="https://github.com/avsingh999/img_map/blob/master/img3.png" style="width:300px;height:200px;" />
